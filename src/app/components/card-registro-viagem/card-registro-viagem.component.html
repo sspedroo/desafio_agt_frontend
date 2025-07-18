@@ -1,0 +1,43 @@
+<div class="registro-card">
+  <div class="registro-header">
+    <h2>Viagem #{{ registroViagem.id.slice(0, 6) }}</h2>
+  </div>
+
+  <div class="registro-detalhes">
+    <div class="registro-item">
+      <span class="label">Status:</span>
+      <span class="valor">{{ registroViagem.status }}</span>
+    </div>
+
+    <div class="registro-item">
+      <span class="label">Motorista:</span>
+      <span class="valor">{{ registroViagem.motorista.nome }}</span>
+    </div>
+
+    <div class="registro-item">
+      <span class="label">Placa:</span>
+      <span class="valor">{{ registroViagem.veiculo.placa }}</span>
+    </div>
+
+    <div class="registro-item">
+      <span class="label">Modelo:</span>
+      <span class="valor">{{ registroViagem.veiculo.modelo }}</span>
+    </div>
+
+    <div class="registro-item">
+      <span class="label">Data de saída: </span>
+      <span class="valor">{{ registroViagem.dataSaida }}</span>
+    </div>
+
+    <div class="registro-item">
+      <span class="label">Data de retorno:</span>
+      <span class="valor">{{ registroViagem.dataRetorno || '-' }}</span>
+    </div>
+
+    <div class="registro-item">
+      <span class="label">Passageiros:</span>
+      <span class="valor">{{ registroViagem.passageiros.join(", ") }}</span>
+    </div>
+  </div>
+</div>
+
