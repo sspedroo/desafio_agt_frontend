@@ -1,0 +1,37 @@
+<form [formGroup]="saidaForm">
+    <div>
+        <p>Preencha os detalhes da saída do veículo.</p>
+    </div>
+
+    <div style="margin-top: 1rem;">
+        <div class="form-container">
+            <div class="form-item">
+                <label for="placaVeiculo">Placa do Veículo</label>
+                <input type="text" pInputText id="placaVeiculo" formControlName="placaVeiculo" placeholder="Ex: ABC-1234" />
+            </div>
+            <!-- <p *ngIf="saidaForm.get('placaVeiculo')?.invalid && saidaForm.get('placaVeiculo')?.touched">
+                Placa é obrigatória.
+            </p> -->
+
+            <div class="form-item">
+                <label for="motorista">Motorista</label>
+                <p-select appendTo="body" [options]="funcionarios" optionLabel="nome" optionValue="id" />
+            </div>
+
+            <div class="form-item">
+                <label for="destino">Destino</label>
+                <input type="text" pInputText id="destino" formControlName="destino" placeholder="Ex: Rua A, 123" />
+            </div>
+
+            <div class="form-item">
+                <label for="passageiros">Passageiros</label>
+                <textarea pInputTextarea formControlName="passageiros" id="passageiros" fluid></textarea>
+            </div>
+        </div>
+        
+        <div style="display: flex; justify-content: center; margin-top: 1rem;">
+            <p-button label="Registrar" rounded/>
+        </div>
+    </div>
+
+</form>
