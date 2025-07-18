@@ -1,0 +1,16 @@
+<section style="padding: 2rem; margin-bottom: 2rem;">
+    <div style="display: flex; align-items: center;">
+        <p-button icon="pi pi-arrow-left" text rounded pTooltip="Voltar para home" tooltipPosition="top" (onClick)="navegarParaHome()" appendTo="body"/>
+        <h1>Registros de Viagens</h1>
+    </div>
+
+    <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+        @for (registro of viagens; track registro.id) {
+            <div class="registro-viagem">
+                <app-card-registro-viagem [registroViagem]="registro" />
+            </div>
+        } @empty {
+            <p>Nenhum registro de viagem encontrado.</p>
+        }
+    </div>
+</section>
