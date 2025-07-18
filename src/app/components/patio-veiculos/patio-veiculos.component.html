@@ -1,0 +1,28 @@
+<section class="patio-veiculos">
+  <!-- Lado esquerdo: Veículos no pátio -->
+  <div class="veiculos-coluna">
+    <h3>Veículos no pátio</h3>
+    <div class="veiculos-lista">
+      @for (veiculo of veiculosNoPatio; track veiculo.id) {
+        <app-card-veiculo [veiculo]="veiculo" class="veiculo-card" />
+      } @empty {
+        <p>Nenhum veículo registrado no pátio.</p>
+      }
+    </div>
+  </div>
+
+  <!-- Divider vertical -->
+  <p-divider layout="vertical" class="divider"></p-divider>
+
+  <!-- Lado direito: Veículos em viagem -->
+  <div class="veiculos-coluna">
+    <h3>Veículos em viagem</h3>
+    <div class="veiculos-lista">
+      @for (veiculo of veiculosEmViagem; track veiculo.id) {
+        <app-card-veiculo [veiculo]="veiculo" class="veiculo-card" />
+      } @empty {
+        <p>Nenhum veículo registrado em viagem.</p>
+      }
+    </div>
+  </div>
+</section>
