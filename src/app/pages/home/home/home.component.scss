@@ -1,0 +1,20 @@
+.main_container {
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &_buttons {
+            display: flex;
+            gap: 1rem;
+        }
+    }
+
+    &_content {
+        margin-top: 4rem;
+    }	
+}
