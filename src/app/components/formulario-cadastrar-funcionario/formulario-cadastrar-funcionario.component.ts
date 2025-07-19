@@ -34,12 +34,14 @@ export class FormularioCadastrarFuncionarioComponent implements OnInit{
 
   registrarFuncionario() {
     if(this.novoFuncionarioForm.invalid) {
+      this.novoFuncionarioForm.markAllAsTouched();
       return
     }
 
     this.funcionarioService.registrarFuncionario(this.novoFuncionarioForm.value).subscribe({
       next: (response) => {
         this.funcionarioCriado.emit(response.nome);
+        this.novoFuncionarioForm.reset();
       },
       error: (error) => {
         this.messageService.add({
