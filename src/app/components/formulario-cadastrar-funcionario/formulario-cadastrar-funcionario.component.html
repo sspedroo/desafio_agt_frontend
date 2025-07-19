@@ -1,0 +1,18 @@
+<form [formGroup]="novoFuncionarioForm">
+    <div class="formulario">
+        <div class="input-item">
+            <label for="nome">Nome</label>
+            <input type="text" pInputText formControlName="nome" placeholder="Ex: Pedro...">
+        </div>
+
+        <div class="input-item">
+            <label for="cnh">CNH</label>
+            <input type="text" pInputText formControlName="cnh" placeholder="Ex: 12345678910" maxlength="11">
+        </div>
+
+        <div class="botao">
+            <p-button label="Salvar" rounded [disabled]="novoFuncionarioForm.invalid" (onClick)="registrarFuncionario()"/>
+        </div>
+    </div>
+</form>
+<p-toast />

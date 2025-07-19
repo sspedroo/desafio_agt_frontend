@@ -1,0 +1,17 @@
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.input-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.255rem;
+}
+
+.botao {
+    margin-top: 1rem;
+    display: flex;
+    align-self: center;
+}
