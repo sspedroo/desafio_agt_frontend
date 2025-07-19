@@ -5,20 +5,20 @@ export interface RegistroViagem {
     id: string;
     veiculo: Veiculo;
     motorista: Funcionario;
-    destino: String;
-    dataSaida: String;
+    destino: string;
+    dataSaida: string;
     status: RegistroViagemStatus;
-    dataRetorno?: String;
-    passageiros: String[];
-    criadoEm: String;
-    atualizadoEm?: String;
+    dataRetorno?: string;
+    passageiros: string;
+    criadoEm: string;
+    atualizadoEm?: string;
 }
 
 export interface CriarRegistroViagem {
     placaVeiculo: string;
     funcionarioMotoristaId: string;
-    destino: String;
-    passageiros: String[];
+    destino: string;
+    passageiros: string;
 }
 
 export interface FinalizarRegistroViagem {
