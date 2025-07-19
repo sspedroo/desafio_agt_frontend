@@ -1,1 +1,38 @@
-<p>funcionarios works!</p>
+<div class="funcionarios-container">
+
+    <div class="funcionarios-container-header">
+        <app-descricao-de-pagina descricao="Funcionários" />
+        <p-button label="Cadastrar Funcionário" rounded />
+    </div>
+
+    <div style="margin-top: 1rem;">
+        <p-table
+         [value]="funcionarios"
+         [tableStyle]="{ 'min-width': '50rem'}"
+         size="large"
+         stripedRows
+        >
+        <ng-template #header>
+            <tr>
+                <th>Nome</th>
+                <th>CNH</th>
+                <th>Criado Em</th>
+                <th>Atualizado Em</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-funcionario>
+            <tr>
+                <td>{{ funcionario.nome }}</td>
+                <td>{{ funcionario.cnh }}</td>
+                <td>{{ funcionario.criadoEm }}</td>
+                <td>{{ funcionario.atualizadoEm || '-' }}</td>
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="4">Nenhum funcionário registrado.</td>
+            </tr>
+        </ng-template>
+        </p-table>
+    </div>
+</div>
