@@ -12,9 +12,9 @@ export const routes: Routes = [
         title: 'Registros de Viagens',
     },
     {
-        path: 'funcionarios',
+        path: 'colaboradores',
         loadComponent: () => import('./pages/funcionarios/funcionarios.component').then(m => m.FuncionariosComponent),
-        title: 'Funcionários'
+        title: 'Colaboradores'
     },
     {
         path: 'veiculos',
