@@ -17,14 +17,14 @@
 </section>
 
 @if (exibirModalRegistrarSaida) {
-    <p-dialog header="Registrar Saída" [(visible)]="exibirModalRegistrarSaida" [modal]="true" [style]="{ width: '50vw' }">
+    <p-dialog header="Registrar Saída" [(visible)]="exibirModalRegistrarSaida" [modal]="true" [style]="{ width: '50vw' }" draggable="false">
         <app-formulario-registrar-saida />
     </p-dialog>
 }
 
 
 @if (exibirModalRegistrarRetorno) {
-    <p-dialog header="Registrar Retorno" [(visible)]="exibirModalRegistrarRetorno" [modal]="true" [style]="{ width: '50vw' }">
+    <p-dialog header="Registrar Retorno" [(visible)]="exibirModalRegistrarRetorno" [modal]="true" [style]="{ width: '50vw' }" draggable="false">
         <app-formulario-registrar-retorno />
     </p-dialog>
 }
