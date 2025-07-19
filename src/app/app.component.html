@@ -1,6 +1,11 @@
 <div style="width: 100%; display: flex; justify-content: space-between; padding: 2rem; align-items: center;">
   <img src="/logo-agt.png" alt="Logo da AGT" width="150px" height="auto"/>
-  <p-button (onClick)="trocarTema()" label="Alterar Tema" rounded [icon]="isDarkTheme ? 'pi pi-sun' : 'pi pi-moon'" />
+
+  <div style="display: flex; gap: 1rem; align-items: center;">
+    <p-button (onClick)="trocarTema()" label="Alterar Tema" rounded [icon]="isDarkTheme ? 'pi pi-sun' : 'pi pi-moon'" />
+    <p-button icon="pi pi-bars" rounded (onClick)="abrirMenuLateral()" text/>
+    <app-menu-lateral #menuLateral/>
+  </div>
 </div>
 
 <router-outlet />
