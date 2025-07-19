@@ -50,10 +50,11 @@ export class FuncionariosComponent implements OnInit{
 
   funcionarioCriadoComSucesso(nome: string) {
     this.exibirModalCriarFuncionario = false;
+    this.recuperarTodosFuncionarios();
     this.messageService.add({
       severity: 'success', 
       summary: 'Sucesso',
-      detail: `Funcionário ${nome} criado com sucesso!`,
+      detail: `Colaborador(a) ${nome} criado com sucesso!`,
     })
   }
 }

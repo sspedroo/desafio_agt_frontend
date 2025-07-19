@@ -1,8 +1,8 @@
 <div class="funcionarios-container">
 
     <div class="funcionarios-container-header">
-        <app-descricao-de-pagina descricao="Funcionários" />
-        <p-button icon="pi pi-user-plus" label="Cadastrar Funcionário" rounded  (onClick)="exibirModalCriarFuncionario = true" />
+        <app-descricao-de-pagina descricao="Colaboradores" />
+        <p-button icon="pi pi-user-plus" label="Cadastrar Colaborador" rounded  (onClick)="exibirModalCriarFuncionario = true" />
     </div>
 
     <div style="margin-top: 1rem;">
@@ -38,7 +38,7 @@
 </div>
 
 @if (exibirModalCriarFuncionario) {
-    <p-dialog header="Registrar Funcionário" [(visible)]="exibirModalCriarFuncionario" [modal]="true" [style]="{ width: '50vw' }" draggable="false">
+    <p-dialog header="Registrar Colaborador" [(visible)]="exibirModalCriarFuncionario" [modal]="true" [style]="{ width: '50vw' }" draggable="false">
         <app-formulario-cadastrar-funcionario (funcionarioCriado)="funcionarioCriadoComSucesso($event)"/>
     </p-dialog>
 }
