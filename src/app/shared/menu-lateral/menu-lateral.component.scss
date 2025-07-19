@@ -1,0 +1,30 @@
+.menu-lateral-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-radius 0.2s ease-in-out;
+    border-radius: 8px;
+    
+    
+    &:hover {
+        background-color: #58c9af;
+        border-radius: 8px;
+    }
+    
+    .menu-lateral-icon {
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+        color: #555;
+    }
+    
+    .menu-lateral-label {
+        font-size: 1rem;
+        color: #333;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
