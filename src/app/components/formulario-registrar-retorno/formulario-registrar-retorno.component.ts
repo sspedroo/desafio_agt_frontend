@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ViagensService } from '../../services/viagens.service';
-import { FinalizarRegistroViagem } from '../../interfaces/registro-viagem.model';
+import { FinalizarRegistroViagem, RegistroViagem } from '../../interfaces/registro-viagem.model';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
@@ -20,6 +20,7 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class FormularioRegistrarRetornoComponent {
+  retornoRegistrado = output<RegistroViagem>();
   private viagemService = inject(ViagensService);
   private messageService = inject(MessageService);
 
@@ -28,7 +29,11 @@ export class FormularioRegistrarRetornoComponent {
 
   registrarRetorno() {
     if (!this.placaVeiculo) {
-      console.error('Placa do veículo é obrigatória.');
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Campo obrigatório',
+        detail: 'Por favor, informe a placa do veículo.'
+      });
       return;
     }
 
@@ -37,8 +42,8 @@ export class FormularioRegistrarRetornoComponent {
     }
 
     this.viagemService.registrarRetorno(retornoViagemData).subscribe({
-      next: () => {
-        console.log('Retorno registrado com sucesso.');
+      next: (response) => {
+        this.retornoRegistrado.emit(response)
         this.placaVeiculo = ''; // Limpa o campo após o registro
       },
       error: (error) => {

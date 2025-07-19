@@ -19,7 +19,7 @@
 
             <div class="form-item">
                 <label for="motorista">Motorista</label>
-                <p-select appendTo="body" [options]="funcionarios" optionLabel="nome" formControlName="funcionarioMotoristaId" optionValue="id" />
+                <p-select id="motorista" appendTo="body" [options]="funcionarios" optionLabel="nome" formControlName="funcionarioMotoristaId" optionValue="id" />
                 @if (funcionarioMotoristaId?.invalid && funcionarioMotoristaId?.touched) {
                     <small style="color: rgb(250, 71, 71)">Motorista é obrigatório.</small>
                 }
@@ -27,7 +27,7 @@
 
             <div class="form-item">
                 <label for="destino">Destino</label>
-                <input type="text" pInputText id="destino" formControlName="destino" placeholder="Ex: Rua A, 123" />
+                <input type="text" pInputText id="destino" formControlName="destino" placeholder="Ex: Rua A, 123" id="destino"/>
                 @if (destino?.invalid && destino?.touched) {
                     <small style="color: rgb(250, 71, 71)">Destino é obrigatório.</small>
                 }
@@ -40,8 +40,8 @@
         </div>
         
         <div style="display: flex; justify-content: center; margin-top: 1rem;">
-            <p-button label="Registrar" rounded [disabled]="saidaForm.invalid" />
+            <p-button label="Registrar" rounded [disabled]="saidaForm.invalid" (onClick)="registrarSaida()"/>
         </div>
     </div>
-
 </form>
+<p-toast />

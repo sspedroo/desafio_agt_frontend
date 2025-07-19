@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, output } from '@angular/core';
 import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,6 +10,9 @@ import { RespostaPaginadaVeiculos, Veiculo } from '../../interfaces/veiculo.mode
 import { Funcionario } from '../../interfaces/funcionario.model';
 import { TextareaModule } from 'primeng/textarea';
 import { FuncionariosService } from '../../services/funcionarios.service';
+import { CriarRegistroViagem, RegistroViagem } from '../../interfaces/registro-viagem.model';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-formulario-registrar-saida',
@@ -19,17 +22,20 @@ import { FuncionariosService } from '../../services/funcionarios.service';
     CommonModule,
     InputTextModule,
     SelectModule,
-    TextareaModule
+    TextareaModule,
+    ToastModule
   ],
   templateUrl: './formulario-registrar-saida.component.html',
-  styleUrl: './formulario-registrar-saida.component.scss'
+  styleUrl: './formulario-registrar-saida.component.scss',
+  providers: [MessageService]
 })
 export class FormularioRegistrarSaidaComponent implements OnInit{
-
+  saidaRegistrada = output<RegistroViagem>();
   private viagemService = inject(ViagensService);
   private veiculoService = inject(VeiculoService);
   private funcioarioService = inject(FuncionariosService)
   private fb = inject(FormBuilder);
+  private messageService = inject(MessageService);
 
   veiculos: Veiculo[] = [];
   funcionarios: Funcionario[] = [];
@@ -40,7 +46,7 @@ export class FormularioRegistrarSaidaComponent implements OnInit{
       placaVeiculo: [null, Validators.required],
       funcionarioMotoristaId: [null, Validators.required],
       destino: [null, Validators.required],
-      passageiros: [[]]
+      passageiros: [null]
     })
 
     this.recuperarVeiculos();
@@ -65,6 +71,34 @@ export class FormularioRegistrarSaidaComponent implements OnInit{
       },
       error: (error) => {
         console.error('Erro ao recuperar funcionários:', error);
+      }
+    });
+  }
+
+  registrarSaida() {
+    if (this.saidaForm.invalid) {
+      this.saidaForm.markAllAsTouched();
+      return;
+    }
+
+    const registro: CriarRegistroViagem = {
+      placaVeiculo: this.saidaForm.value.placaVeiculo,
+      funcionarioMotoristaId: this.saidaForm.value.funcionarioMotoristaId,
+      destino: this.saidaForm.value.destino,
+      passageiros: this.saidaForm.value.passageiros
+    };
+
+    this.viagemService.registrarSaida(registro).subscribe({
+      next: (response) => {
+        this.saidaRegistrada.emit(response);
+        this.saidaForm.reset();
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro ao registrar saída',
+          detail: error.error.detail
+        });
       }
     });
   }
