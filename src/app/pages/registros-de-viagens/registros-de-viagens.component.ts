@@ -5,10 +5,11 @@ import { CardRegistroViagemComponent } from "../../components/card-registro-viag
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { Router } from '@angular/router';
+import { DescricaoDePaginaComponent } from "../../shared/descricao-de-pagina/descricao-de-pagina.component";
 
 @Component({
   selector: 'app-registros-de-viagens',
-  imports: [CardRegistroViagemComponent, ButtonModule, TooltipModule],
+  imports: [CardRegistroViagemComponent, ButtonModule, TooltipModule, DescricaoDePaginaComponent],
   templateUrl: './registros-de-viagens.component.html',
   styleUrl: './registros-de-viagens.component.scss'
 })
@@ -32,9 +33,4 @@ export class RegistrosDeViagensComponent implements OnInit {
       }
     });
   }
-
-  navegarParaHome() {
-    this.router.navigate(['/']);
-  }
-
 }

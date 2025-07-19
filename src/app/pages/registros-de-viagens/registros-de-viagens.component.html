@@ -1,8 +1,6 @@
 <section style="padding: 2rem; margin-bottom: 2rem;">
-    <div style="display: flex; align-items: center;">
-        <p-button icon="pi pi-arrow-left" text rounded pTooltip="Voltar para home" tooltipPosition="top" (onClick)="navegarParaHome()" appendTo="body"/>
-        <h1>Registros de Viagens</h1>
-    </div>
+    
+    <app-descricao-de-pagina descricao="Registros de Viagens" />
 
     <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem;">
         @for (registro of viagens; track registro.id) {
