@@ -1,0 +1,19 @@
+<form [formGroup]="novoVeiculoForm">
+    <div class="formulario">
+        <div class="input-item">
+            <label for="nome">Placa</label>
+            <input type="text" pInputText formControlName="placa" placeholder="Ex: ABC-1A00">
+        </div>
+
+        <div class="input-item">
+            <label for="cnh">Modelo</label>
+            <input type="text" pInputText formControlName="modelo" placeholder="Ex: Gol" maxlength="11">
+        </div>
+
+        <div class="botao">
+            <p-button label="Salvar" rounded [disabled]="novoVeiculoForm.invalid" (onClick)="registrarVeiculo()"/>
+        </div>
+    </div>
+</form>
+<p-toast />
+
