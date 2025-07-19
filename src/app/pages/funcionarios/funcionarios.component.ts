@@ -6,6 +6,8 @@ import { Funcionario } from '../../interfaces/funcionario.model';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { DescricaoDePaginaComponent } from "../../shared/descricao-de-pagina/descricao-de-pagina.component";
+import { DialogModule } from 'primeng/dialog';
+import { FormularioCadastrarFuncionarioComponent } from "../../components/formulario-cadastrar-funcionario/formulario-cadastrar-funcionario.component";
 
 @Component({
   selector: 'app-funcionarios',
@@ -13,7 +15,9 @@ import { DescricaoDePaginaComponent } from "../../shared/descricao-de-pagina/des
     TableModule,
     ButtonModule,
     ToastModule,
-    DescricaoDePaginaComponent
+    DescricaoDePaginaComponent,
+    DialogModule,
+    FormularioCadastrarFuncionarioComponent
 ],
   templateUrl: './funcionarios.component.html',
   styleUrl: './funcionarios.component.scss',
@@ -24,6 +28,7 @@ export class FuncionariosComponent implements OnInit{
   private messageService = inject(MessageService);
 
   funcionarios: Funcionario[] = [];
+  exibirModalCriarFuncionario = false;
 
   ngOnInit(): void {
     this.recuperarTodosFuncionarios();
@@ -36,10 +41,19 @@ export class FuncionariosComponent implements OnInit{
       },
       error: (error) => {
         this.messageService.add({
-          severity: error, 
+          severity: 'error', 
           detail: error.error.detail
         })
       }
+    })
+  }
+
+  funcionarioCriadoComSucesso(nome: string) {
+    this.exibirModalCriarFuncionario = false;
+    this.messageService.add({
+      severity: 'success', 
+      summary: 'Sucesso',
+      detail: `Funcionário ${nome} criado com sucesso!`,
     })
   }
 }
