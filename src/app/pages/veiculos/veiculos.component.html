@@ -1,1 +1,47 @@
-<p>veiculos works!</p>
+<section class="container-veiculos">
+    <div class="container-veiculos-header">
+        <app-descricao-de-pagina descricao="Veículos"/>
+        <p-button icon="pi pi-plus" label="Cadastrar Veículo" rounded  (onClick)="exibirModalCriarVeiculo = true" />
+    </div>
+
+    <div style="margin-top: 1rem;">
+        <p-table
+            [value]="veiculos"
+            [tableStyle]="{ 'min-width': '50rem'}"
+            size="large"
+            stripedRows
+        >
+        <ng-template #header>
+            <tr>
+                <th>Placa</th>
+                <th>Modelo</th>
+                <th>Status</th>
+                <th>Criado Em</th>
+                <th>Atualizado Em</th>
+                </tr>
+        </ng-template>
+        <ng-template #body let-veiculo>
+            <tr>
+                <td>{{ veiculo.placa }}</td>
+                <td>{{ veiculo.modelo }}</td>
+                <td>{{ veiculo.status | veiculoStatus}}</td>
+                <td>{{ veiculo.criadoEm }}</td>
+                <td>{{ veiculo.atualizadoEm || '-' }}</td>
+            </tr>
+        </ng-template>
+            <ng-template #emptymessage>
+                <tr>
+                    <td colspan="5" style="text-align: center;">Nenhum veículo registrado.</td>
+                </tr>
+        </ng-template>
+        </p-table>
+    </div>
+</section>
+
+@if (exibirModalCriarVeiculo) {
+<p-dialog header="Registrar Veículo" [(visible)]="exibirModalCriarVeiculo" [modal]="true" [style]="{ width: '50vw' }" draggable="false">
+        <app-formulario-cadastrar-veiculo (veiculoCriado)="veiculoCriadoComSucesso($event)"/>
+    </p-dialog>
+}
+
+<p-toast position="top-center"/>
