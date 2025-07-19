@@ -1,3 +1,7 @@
+@let placaVeiculo = saidaForm.get('placaVeiculo');
+@let funcionarioMotoristaId = saidaForm.get('funcionarioMotoristaId');
+@let destino = saidaForm.get('destino');
+
 <form [formGroup]="saidaForm">
     <div>
         <p>Preencha os detalhes da saída do veículo.</p>
@@ -8,19 +12,25 @@
             <div class="form-item">
                 <label for="placaVeiculo">Placa do Veículo</label>
                 <input type="text" pInputText id="placaVeiculo" formControlName="placaVeiculo" placeholder="Ex: ABC-1234" />
+                @if (placaVeiculo?.invalid && placaVeiculo?.touched) {
+                    <small style="color: rgb(250, 71, 71)">Placa é obrigatória.</small>
+                }
             </div>
-            <!-- <p *ngIf="saidaForm.get('placaVeiculo')?.invalid && saidaForm.get('placaVeiculo')?.touched">
-                Placa é obrigatória.
-            </p> -->
 
             <div class="form-item">
                 <label for="motorista">Motorista</label>
-                <p-select appendTo="body" [options]="funcionarios" optionLabel="nome" optionValue="id" />
+                <p-select appendTo="body" [options]="funcionarios" optionLabel="nome" formControlName="funcionarioMotoristaId" optionValue="id" />
+                @if (funcionarioMotoristaId?.invalid && funcionarioMotoristaId?.touched) {
+                    <small style="color: rgb(250, 71, 71)">Motorista é obrigatório.</small>
+                }
             </div>
 
             <div class="form-item">
                 <label for="destino">Destino</label>
                 <input type="text" pInputText id="destino" formControlName="destino" placeholder="Ex: Rua A, 123" />
+                @if (destino?.invalid && destino?.touched) {
+                    <small style="color: rgb(250, 71, 71)">Destino é obrigatório.</small>
+                }
             </div>
 
             <div class="form-item">
@@ -30,7 +40,7 @@
         </div>
         
         <div style="display: flex; justify-content: center; margin-top: 1rem;">
-            <p-button label="Registrar" rounded/>
+            <p-button label="Registrar" rounded [disabled]="saidaForm.invalid" />
         </div>
     </div>
 
