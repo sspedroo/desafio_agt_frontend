@@ -12,20 +12,22 @@
     </div>
 
     <div class="main_container_content">
-        <app-patio-veiculos />
+        <app-patio-veiculos [veiculosEmViagem]="veiculosEmViagem" [veiculosNoPatio]="veiculosNoPatio"/>
     </div>
 </section>
 
 @if (exibirModalRegistrarSaida) {
     <p-dialog header="Registrar Saída" [(visible)]="exibirModalRegistrarSaida" [modal]="true" [style]="{ width: '50vw' }" draggable="false">
-        <app-formulario-registrar-saida />
+        <app-formulario-registrar-saida (saidaRegistrada)="saidaRegistradaComSucesso($event)"/>
     </p-dialog>
 }
 
 
 @if (exibirModalRegistrarRetorno) {
     <p-dialog header="Registrar Retorno" [(visible)]="exibirModalRegistrarRetorno" [modal]="true" [style]="{ width: '50vw' }" draggable="false">
-        <app-formulario-registrar-retorno />
+        <app-formulario-registrar-retorno (retornoRegistrado)="retornoRegistradoComSucesso($event)"/>
     </p-dialog>
 }
+
+<p-toast position="top-center" />
 
