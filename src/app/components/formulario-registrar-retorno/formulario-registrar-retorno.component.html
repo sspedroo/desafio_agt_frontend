@@ -1,1 +1,9 @@
-<p>formulario-registrar-retorno works!</p>
+<div class="container_registrar-retorno">
+    <div class="placa-veiculo-input">
+        <label for="placa">Placa do Veículo</label>
+        <input type="text" pInputText [(ngModel)]="placaVeiculo" placeholder="Ex: ABC-1234" />
+    </div>
+
+    <p-button label="Registrar Retorno" rounded (onClick)="registrarRetorno()" [disabled]="!placaVeiculo" />
+</div>
+<p-toast />
