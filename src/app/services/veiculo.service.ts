@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { RespostaPaginadaVeiculos, Veiculo } from '../interfaces/veiculo.model';
+import { CriarVeiculo, RespostaPaginadaVeiculos, Veiculo } from '../interfaces/veiculo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +26,9 @@ export class VeiculoService {
     }
 
     return this.http.get<RespostaPaginadaVeiculos>(this.apiUrl, { params });
+  }
+
+  registrarVeiculo(veiculo: CriarVeiculo): Observable<Veiculo> {
+    return this.http.post<Veiculo>(this.apiUrl, veiculo);
   }
 }
