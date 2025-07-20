@@ -2,6 +2,7 @@ export interface Funcionario {
     id: string;
     nome: string;
     cnh: string;
+    emViagem: boolean;
     criadoEm: string;
     atualizadoEm?: string;
 }

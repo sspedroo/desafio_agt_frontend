@@ -11,7 +11,7 @@
         <div class="form-container">
             <div class="form-item">
                 <label for="placaVeiculo">Placa do Veículo</label>
-                <input type="text" pInputText id="placaVeiculo" formControlName="placaVeiculo" placeholder="Ex: ABC-1234" />
+                <p-select id="placaVeiculo" formControlName="placaVeiculo" [options]="veiculos" optionLabel="nome" optionValue="id" placeholder="Ex: ABC-1234" />
                 @if (placaVeiculo?.invalid && placaVeiculo?.touched) {
                     <small style="color: rgb(250, 71, 71)">Placa é obrigatória.</small>
                 }

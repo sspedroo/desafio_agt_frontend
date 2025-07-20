@@ -6,7 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { ViagensService } from '../../services/viagens.service';
 import { VeiculoService } from '../../services/veiculo.service';
-import { RespostaPaginadaVeiculos, Veiculo } from '../../interfaces/veiculo.model';
+import { RespostaPaginadaVeiculos, Veiculo, VeiculoStatus } from '../../interfaces/veiculo.model';
 import { Funcionario } from '../../interfaces/funcionario.model';
 import { TextareaModule } from 'primeng/textarea';
 import { FuncionariosService } from '../../services/funcionarios.service';
@@ -37,7 +37,7 @@ export class FormularioRegistrarSaidaComponent implements OnInit{
   private fb = inject(FormBuilder);
   private messageService = inject(MessageService);
 
-  veiculos: Veiculo[] = [];
+  veiculos: {nome: string, id: string}[] = [];
   funcionarios: Funcionario[] = [];
   saidaForm!: FormGroup;
   
@@ -54,9 +54,14 @@ export class FormularioRegistrarSaidaComponent implements OnInit{
   }
 
   recuperarVeiculos() {
-    this.veiculoService.recuperarTodosVeiculos().subscribe({
-      next: (veiculos: RespostaPaginadaVeiculos) => {
-        this.veiculos = veiculos.content;
+    this.veiculoService.recuperarTodosVeiculos(VeiculoStatus.NO_PATIO).subscribe({
+      next: (veiculos: Veiculo[]) => {
+        this.veiculos = veiculos.map(veiculo => {
+          return {
+            nome: `Placa: ${veiculo.placa} - Modelo: ${veiculo.modelo}`,
+            id: veiculo.placa
+          };
+        })
       },
       error: (error) => {
         console.error('Erro ao recuperar veículos:', error);
@@ -67,7 +72,7 @@ export class FormularioRegistrarSaidaComponent implements OnInit{
   recuperarFuncionarios() {
     this.funcioarioService.recuperarTodosFuncionarios().subscribe({
       next: (funcionarios: Funcionario[]) => {
-        this.funcionarios = funcionarios;
+        this.funcionarios = funcionarios.filter(funcionario => !funcionario.emViagem);
       },
       error: (error) => {
         console.error('Erro ao recuperar funcionários:', error);

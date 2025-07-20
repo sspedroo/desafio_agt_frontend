@@ -12,7 +12,7 @@ export class VeiculoService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl + '/veiculos';
 
-  recuperarTodosVeiculos(status?: 'NO_PATIO' | 'EM_VIAGEM', placa?: string, modelo?: string): Observable<RespostaPaginadaVeiculos> {
+  recuperarTodosVeiculos(status?: 'NO_PATIO' | 'EM_VIAGEM', placa?: string, modelo?: string): Observable<Veiculo[]> {
   
     let params = new HttpParams();
     if (status) {
@@ -25,7 +25,7 @@ export class VeiculoService {
       params = params.set('modelo', modelo);
     }
 
-    return this.http.get<RespostaPaginadaVeiculos>(this.apiUrl, { params });
+    return this.http.get<Veiculo[]>(this.apiUrl, { params });
   }
 
   registrarVeiculo(veiculo: CriarVeiculo): Observable<Veiculo> {

@@ -40,8 +40,8 @@ export class VeiculosComponent implements OnInit{
 
   recuperarTodosVeiculos(){
     this.veiculoService.recuperarTodosVeiculos().subscribe({
-      next: (response: RespostaPaginadaVeiculos) => {
-        this.veiculos = response.content;
+      next: (response) => {
+        this.veiculos = response;
       },
       error: (error) => {
         this.messageService.add({

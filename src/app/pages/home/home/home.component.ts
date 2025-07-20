@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit{
   recuperarVeiculosNoPatio() {
     this.veiculosServico.recuperarTodosVeiculos('NO_PATIO').subscribe({
       next: (resposta) => {
-        this.veiculosNoPatio = resposta.content;
+        this.veiculosNoPatio = resposta;
       },
       error: (erro) => {
         console.error('Erro ao recuperar veículos no pátio:', erro);
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit{
   recuperarVeiculosEmViagem() {
     this.veiculosServico.recuperarTodosVeiculos('EM_VIAGEM').subscribe({
       next: (resposta) => {
-        this.veiculosEmViagem = resposta.content;
+        this.veiculosEmViagem = resposta;
       },
       error: (erro) => {
         console.error('Erro ao recuperar veículos em viagem:', erro);
